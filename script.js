@@ -38,20 +38,34 @@ class LinkedList {
         } 
     }
     delete() {
-        if(this.next === null) {
-            this.head = null;
+        if(this.head === null) {
+            return null;
         } else {
-
+            let temp = this.head;
+            this.head = this.head.next;
+            temp = null;
+            return this.head;
         }
     }
-
+    search(value) {
+        return this.searchRec(this.head, value)
+    } 
+    searchRec(current, value) {
+        if(current === null) {
+            return false;
+        } else if(current.value === value) {
+            return true;
+        }
+        return this.searchRec(current.next, value)
+    }
 }
 
 let list = new LinkedList();
 list.append(1)
 list.append(2)
 list.append(3)
-// list.display()
+list.display()
+console.log(list.search(4))
 
 // array function
 function ask(question, yes, no) {
@@ -115,6 +129,6 @@ const rectangle1 = {
     
     let car = new Car('BMW', 'X5', 2020, 42000);
     car.drive(500); 
-    car.getDetails(); 
-    console.log(`Car age: ${car.age} years`); 
+    // car.getDetails(); 
+    // console.log(`Car age: ${car.age} years`); 
     
